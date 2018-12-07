@@ -1,11 +1,14 @@
 import re
 from itertools import chain
+import numpy as np
+import seaborn as sns
+import matplotlib.pylab as plt
 
 size = 1000
 
 
 def read_input():
-    with open('test.txt') as fp:
+    with open('secret.txt') as fp:
         return list(map(lambda x: x.replace('\n', ''), fp.readlines()))
 
 
@@ -61,9 +64,14 @@ def fill_area(claims):
     return area
 
 
+def print_area(area):
+    sns.heatmap(area)
+    plt.show()
+
+
 prepared_claims = read_claims(read_input())
 prepared_area = fill_area(prepared_claims)
 print('Part 1 answer: ', solve_part_1(prepared_area))
 print('Part 2 answer: ', solve_part_2(prepared_claims, prepared_area))
-
+print_area(prepared_area)
 
